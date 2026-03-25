@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './App.css'
 import Laskuri from './Laskuri'
 import Viesti from './Viesti'
+import Posts from './Posts'
 
 const App = () => {
 
@@ -12,9 +13,11 @@ const huomio = () => {
   alert("huomio!")
 }
 
+
   return (
     <div className="App">
       <h1>hello from React!</h1>
+      <Posts />
       
       {showLaskuri && <Laskuri huomio={huomio} />}
       {!showLaskuri && <button onClick={() => setShowLaskuri(true)}>näytä laskuri</button>}
