@@ -182,3 +182,12 @@
     border-right-color: var(--border);
   }
 }
+
+.post {
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: 20px;
+  background: var(--post-bg);
+  background-color: aqua;
+  margin-bottom: 2%;
+}
