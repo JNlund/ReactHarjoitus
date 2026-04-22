@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import CustomerService from './services/Customer'
 import Customer from './Customer'
 import CustomerAdd from './CustomerAdd'
-import { CustomerEdit } from './CustomerEdit'
+import CustomerEdit from './CustomerEdit'
 
 const CustomerList = ({setMessage, setIsPositive, setShowMessage}) => {
 

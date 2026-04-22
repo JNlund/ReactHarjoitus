@@ -15,7 +15,7 @@ const handleSubmit = (event) => {
       event.preventDefault()
       var userForAuth = {
         username: username,
-        password: md5(password) // Salataan md5 kirjaston metodilla
+        password: password 
     }
 
     // Käytetään services/Auth.js tiedoston metodia

@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Message from './Message'
 import Login from './Login'
 
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 
 const App = () => {
@@ -20,7 +20,6 @@ const [isPositive, setIsPositive] = useState(true)
 const [showMessage, setShowMessage] = useState('')
 const [loggedInUser, setLoggedInUser] = useState('')
   
-
 
 useEffect(() => {
   let storedUser = localStorage.getItem("username")
@@ -58,17 +57,17 @@ const logout = () => {
 
           {showMessage && <Message message={message} isPositive={isPositive} />}
 
-          <Switch>
-                <Route path="/Customers"> <CustomerList setMessage={setMessage} setIsPositive={setIsPositive} 
-                setShowMessage={setShowMessage} /></Route>
+          {/* TÄÄLLÄ ON TEHTY KORJAUKSET (Switch -> Routes ja element={...}) */}
+          <Routes>
+                <Route path="/Customers" element={<CustomerList setMessage={setMessage} setIsPositive={setIsPositive} 
+                setShowMessage={setShowMessage} />} />
 
-          <Route path="/Users"> <UserList setMessage={setMessage} setIsPositive={setIsPositive} 
-                setShowMessage={setShowMessage} /></Route>
+                <Route path="/Users" element={<UserList setMessage={setMessage} setIsPositive={setIsPositive} 
+                setShowMessage={setShowMessage} />} />
 
-                <Route path="/Laskuri"> <Laskuri /></Route>
-                <Route path="/Posts"> <Posts /></Route>
-
-          </Switch>
+                <Route path="/Laskuri" element={<Laskuri />} />
+                <Route path="/Posts" element={<Posts />} />
+          </Routes>
            
       </Router>
 

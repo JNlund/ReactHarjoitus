@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = "https://localhost:5174/api/authentication"
+const baseUrl = "https://localhost:7229/api/authentication"
 //const baseUrl = "https://nwbackendsimo.azurewebsites.net/api/authentication"
 
 const authenticate = (userForAuth) => {
