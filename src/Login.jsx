@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import LoginService from './services/Auth'
 import md5 from 'md5'
 
-const Login = ({setIsPositive, setMessage, setShowMessage, setLoggedInUser}) => {
+const Login = ({setIsPositive, setMessage, setShowMessage, setLoggedInUser, setAccessLevel}) => {
 
 // Komponentin tilan määritys
 const [username, setUsername] = useState('')
@@ -27,9 +27,13 @@ const handleSubmit = (event) => {
         localStorage.setItem("username", response.data.username)
         localStorage.setItem("accesslevelId", response.data.accesslevelId)
         localStorage.setItem("token", response.data.token)
+
+       
         
         // Asetetaan app komponentissa olevaan stateen
         setLoggedInUser(response.data.username)
+
+         setAccessLevel(response.data.accesslevelId)
 
        setMessage(`Logged in as: ${userForAuth.username}`)
        setIsPositive(true)

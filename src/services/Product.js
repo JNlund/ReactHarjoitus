@@ -1,22 +1,20 @@
 import axios from "axios"
 
-// const baseUrl = "https://localhost:7229/api/users"
-const baseUrl = "https://jnbackendcareeria-bmf2ejavbecyc3aq.canadacentral-01.azurewebsites.net/api/users"
+// const baseUrl = "https://localhost:7229/api/products" 
+const baseUrl = "https://jnbackendcareeria-bmf2ejavbecyc3aq.canadacentral-01.azurewebsites.net/api/products"
 
-// Nyt jokainen metodi ottaa vastaan tokenin
 const getAll = (token) => {
     const config = {
         headers: { Authorization: `Bearer ${token}` },
     }
-    
     return axios.get(baseUrl, config)
 }
 
-const create = (newUser, token) => {
+const create = (newProduct, token) => {
     const config = {
         headers: { Authorization: `Bearer ${token}` },
     }
-    return axios.post(baseUrl, newUser, config)
+    return axios.post(baseUrl, newProduct, config)
 }
 
 const remove = (id, token) => {
@@ -26,11 +24,11 @@ const remove = (id, token) => {
     return axios.delete(`${baseUrl}/${id}`, config)
 }
 
-const update = (id, updatedUser, token) => {
+const update = (id, newObject, token) => {
     const config = {
         headers: { Authorization: `Bearer ${token}` },
     }
-    return axios.put(`${baseUrl}/${id}`, updatedUser, config)
+    return axios.put(`${baseUrl}/${id}`, newObject, config)
 }
 
 export default { getAll, create, remove, update }

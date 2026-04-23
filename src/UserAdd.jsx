@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import UserService from './services/User'
 import md5 from 'md5'
 
-const UserAdd = ({setLisäystila, setIsPositive, setMessage, setShowMessage}) => {
+const UserAdd = ({ setLisäystila, setMessage, setIsPositive, setShowMessage, onUserAdded }) => {
 
 // Komponentin tilan määritys
 // Id arvo määritellään tietokannassa automaattisesti,
@@ -14,6 +14,8 @@ const [newEmail, setNewEmail] = useState('')
 const [newAccesslevelId, setNewAccesslevelId] = useState(2)
 const [newUsername, setNewUsername] = useState('')
 const [newPassword, setNewPassword] = useState('')
+const [confirmPassword, setConfirmPassword] = useState('')
+const passwordsMatch = newPassword === confirmPassword;
 
 
 // onSubmit tapahtumankäsittelijä funktio
@@ -36,17 +38,23 @@ const handleSubmit = (event) => {
        setMessage(`Added new User: ${newUser.firstname} ${newUser.lastname}`)
        setIsPositive(true)
        setShowMessage(true)
+
+       if (typeof onUserAdded === 'function') {
+                        onUserAdded()
+                    }
       
        setTimeout(() => {
         setShowMessage(false)
        }, 5000)
-
+        onUserAdded()
        setLisäystila(false)
     }
 
       })
       .catch(error => {
-        setMessage(error)
+       console.error("Tallennusvirhe:", error)
+                setMessage("Käyttäjän lisäys epäonnistui.")
+        // setMessage(error.toString)
         setIsPositive(false)
         setShowMessage(true)
 
@@ -86,8 +94,18 @@ const handleSubmit = (event) => {
                 <input type="password" value={newPassword} placeholder="Password"
                     onChange={({ target }) => setNewPassword(target.value)} />
             </div>
-            
-         <input type='submit' value='save' />
+
+            <div>
+                <input type="password" value={confirmPassword} placeholder="Confirm Password"
+                    onChange={({ target }) => setConfirmPassword(target.value)} />
+            </div>
+            {/* Näytetään virheilmoitus, jos salasanat eivät täsmää JA vahvistuskenttään on kirjoitettu jotain */}
+            {!passwordsMatch && confirmPassword.length > 0 && (
+                <p style={{ color: 'red', margin: '5px 0', fontWeight: 'bold' }}>
+                    Salasanat eivät täsmää!
+                </p>
+                )}
+        <input type='submit' value='save' disabled={!passwordsMatch || newPassword.length === 0} />
          <input type='button' value='back' onClick={() => setLisäystila(false)} />
        </form>
 
