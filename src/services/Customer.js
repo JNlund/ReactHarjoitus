@@ -1,7 +1,7 @@
 import axios from "axios"
 
 // const baseUrl = "https://localhost:7229/api/customers"
-const baseUrl = "https://jnbackendcareeria-bmf2ejavbecyc3aq.canadacentral-01.azurewebsites.net/swagger"
+const baseUrl = "https://jnbackendcareeria-bmf2ejavbecyc3aq.canadacentral-01.azurewebsites.net/api/customers"
 let token = null
 
 // Tämä on metodi jota kutsutaan aina ennen kuin tehdään muu pyyntö serviceen
